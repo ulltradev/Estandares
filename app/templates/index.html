@@ -1,0 +1,46 @@
+<html> 
+    <head>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="{{ url_for('static', filename='css/exploring.css') }}"></script>
+        <title>{{ title }} - Microblog</title>
+    </head>
+    <body>
+    <div>
+
+            <label for="exampleFormControlSelect1">Carro vendido</label>
+            <select class="form-control" id="exampleFormControlSelect1">
+                <option>mazda</option>
+                <option>masserati</option>
+                <option>aston martin</option>
+                <option>range rover</option>
+            </select>
+            <br>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Nombre de cliente que compra</span>
+                </div>
+                <input type="text" class="form-control" placeholder="..." aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+            <br>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Cedula de cliente que compra</span>
+                </div>
+                <input type="text" class="form-control" placeholder="..." aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+    </div>
+
+    <label for="exampleFormControlSelect1">Vendedor</label>
+    <select class="form-control" id="exampleFormControlSelect1">
+        <option>Esteban</option>
+        <option>Sandra</option>
+        <option>Leyner</option>
+        <option>Santiago</option>
+    </select>
+    
+    <div id="TextoDelPdf"></div>
+    <!-- <input type="button" value="Click me" id="aplicarRegex"> -->
+    <script src="{{ url_for('static', filename='js/exploring.js') }}"></script>
+    </body>
+</html>

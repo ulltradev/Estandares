@@ -1,0 +1,693 @@
+<!doctype html>
+<html lang="en">
+ 
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/fonts/circular-std/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='libs/css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/fonts/fontawesome/css/fontawesome-all.css') }}">
+    <title>Concept - Bootstrap 4 Admin Dashboard Template</title>
+</head>
+
+<body class="chat-body">
+    <!-- ============================================================== -->
+    <!-- main wrapper -->
+    <!-- ============================================================== -->
+    <div class="dashboard-main-wrapper">
+        <!-- ============================================================== -->
+        <!-- navbar -->
+        <!-- ============================================================== -->
+        <div class="dashboard-header">
+            <nav class="navbar navbar-expand-lg bg-white fixed-top">
+                <a class="navbar-brand" href="#">Concept</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto navbar-right-top">
+                        <li class="nav-item dropdown nav-user">
+                            <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
+                                <div class="nav-user-info">
+                                    <h5 class="mb-0 text-white nav-user-name">John Abraham</h5>
+                                    <span class="status"></span><span class="ml-2">Available</span>
+                                </div>
+                                <a class="dropdown-item" href="#"><i class="fas fa-user mr-2"></i>Account</a>
+                                <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i>Setting</a>
+                                <a class="dropdown-item" href="#"><i class="fas fa-power-off mr-2"></i>Logout</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end navbar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- left sidebar -->
+        <!-- ============================================================== -->
+        <div class="nav-left-sidebar sidebar-dark">
+            <div class="menu-list">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <a class="d-xl-none d-lg-none" href="#">Dashboard</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav flex-column">
+                            <li class="nav-divider">
+                                Menu
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Dashboard <span class="badge badge-success">6</span></a>
+                                <div id="submenu-1" class="collapse submenu" style="">
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end left sidebar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- wrapper  -->
+        <!-- ============================================================== -->
+        <div class="dashboard-wrapper">
+            <div class="main-container">
+                <div class="content-container">
+                    <form id="upload-file" role="form" action="sendQuestions" method="post" enctype="multipart/form-data">
+                        <div class="modal-body">
+                                <label for="file"><b>Upload packet here</b></label>
+                                <input type="file" name="file">
+                                <p class="help-block">Upload a .pdf  you want to read.</p>
+                            </div>
+                        <div class="modal-footer">                                                                
+                                <div class="dropdown">
+                                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      Seccion a agregar
+                                    </button>
+                                    <div  id="dropD" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                      <a class="dropdown-item" id="Formato" href="#">Formato</a>
+                                      <a class="dropdown-item" id="DeterminadorDeFormato" href="#">Determinador de formato</a>
+                                      <a class="dropdown-item" id="Variable" href="#">Variable</a>
+                                      <a class="dropdown-item" id="Eliminables" href="#">Eliminables</a>
+                                      <a class="dropdown-item" id="SeparadorDeEventos" href="#">Separador de eventos</a>
+                                      <a class="dropdown-item" id="ColumnasNoVacias" href="#">Columnas Que no Pueden estar vacias</a>
+                                    </div>
+                                  </div>                                  
+                                <button id="upload-file-btn" type="button" class="btn btn-default" data-dismiss="modal" value="Upload">Upload</button>
+                        </div>
+                    </form>
+                    <div class="chat-module">
+                        <div class="chat-module-top">
+                            <form>
+                                <div class="input-group input-group-round">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                            <button id="botonQueBuscaRegex" class="btn btn-outline-primary" type="button">Buscar coincidencias</button> 
+                                        </div>
+                                        <input id="aquiVaRegex" type="text" class="form-control" placeholder="escriba su expresion regular">
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="chat-module-body" id="meterAquiElTextoDelPdf">
+                            </div>
+                        </div>
+                        <div class="chat-module-bottom">
+                            <form class="chat-form">
+                                <textarea class="form-control" placeholder="Nombre del formato" id="aquiVaSeccion" rows="1"></textarea>
+                                <textarea class="form-control" placeholder="Nombre de la variable" id="aquiVaNombreVariable" rows="1"></textarea>
+                                <div class="chat-form-buttons">
+                                    <button type="button" class="btn btn-link">
+                                        <i class="far fa-smile"></i>
+                                    </button>
+                                    <div class="custom-file custom-file-naked">
+                                        <input type="file" class="custom-file-input" id="customFile">
+                                        <label class="custom-file-label" for="customFile">
+                                            <i class="fas fa-paperclip"></i>
+                                        </label>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="chat-sidebar collapse" id="sidebar-collapse">
+                        <div class="chat-sidebar-content">
+                            <div class="chat-team-sidebar text-small">
+                                <div class="chat-team-sidebar-top">
+                                    <div class="media align-items-center">
+                                        <a href="#" class="mr-2">
+                                        </a>
+                                        <div class="media-body">
+                                            <h5 class="mb-1">Pipeline Fans</h5>
+                                            <p>A collective of Pipeline enthusiasts sharing the the love</p>
+                                        </div>
+                                    </div>
+                                    <ul class="nav nav-tabs nav-justified" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active show" id="members-tab" data-toggle="tab" href="#members" role="tab" aria-controls="members" aria-selected="true">Members</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="files-tab" data-toggle="tab" href="#files" role="tab" aria-controls="files" aria-selected="false">Files</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="chat-team-sidebar-bottom">
+                                    <div class="tab-content">
+                                        <div class="tab-pane fade active show" id="members" role="tabpanel" aria-labelledby="members-tab" data-filter-list="list-group">
+                                            <div id="test-list">
+                                                <form class="px-3 mb-3">
+                                                    <div class="input-group input-group-round">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">
+                                                            <i class="fas fa-search"></i>
+                                                        </span>
+                                                        </div>
+                                                        <input type="text" class="form-control search" placeholder="Filter members" aria-label="Filter Members">
+                                                    </div>
+                                                </form>
+                                                <div class="list-group list-group-flush  list">
+                                                    <a class="list-group-item list-group-item-action" href="#">
+                                                        <div class="media media-member mb-0">
+                                                            <div class="media-body ">
+                                                                <h6 class="mb-0 name">Claire Connors</h6>
+                                                                <span class="name">Administrator</span>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                    <a class="list-group-item list-group-item-action" href="#">
+                                                        <div class="media media-member mb-0">
+                                                            <div class="media-body">
+                                                                <h6 class="mb-0 name">Marcus Simmons</h6>
+                                                                <span class="name">Administrator</span>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                    <a class="list-group-item list-group-item-action" href="#">
+                                                        <div class="media media-member mb-0">
+                                                            <div class="media-body">
+                                                                <h6 class="mb-0 name">Peggy Brown</h6>
+                                                                <span class="name">Project Manager</span>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                    <a class="list-group-item list-group-item-action" href="#">
+                                                        <div class="media media-member mb-0">
+                                                            <div class="media-body">
+                                                                <h6 class="mb-0 name">Harry Xai</h6>
+                                                                <span class="name">Project Manager</span>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                    <a class="list-group-item list-group-item-action" href="#">
+                                                        <div class="media media-member mb-0">
+                                                            <div class="media-body">
+                                                                <h6 class="mb-0 name">Sally Harper</h6>
+                                                                <span class="name">Developer</span>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                    <a class="list-group-item list-group-item-action" href="#">
+                                                        <div class="media media-member mb-0">
+                                                            <div class="media-body">
+                                                                <h6 class="mb-0 name">Ravi Singh</h6>
+                                                                <span class="name">Developer</span>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                    <a class="list-group-item list-group-item-action" href="#">
+                                                        <div class="media media-member mb-0">
+                                                            <div class="media-body">
+                                                                <h6 class="mb-0 name">David Whittaker</h6>
+                                                                <span class="name">Designer</span>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                    <a class="list-group-item list-group-item-action" href="#">
+                                                        <div class="media media-member mb-0">
+                                                        <div class="media-body ">
+                                                            <h6 class="mb-0 name ">Kerri-Anne Banks</h6>
+                                                            <span class="name ">Marketing</span>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                                    <a class="list-group-item list-group-item-action " href="# ">
+                                                    <div class="media media-member mb-0 ">
+                                                            <div class="media-body">
+                                                                <h6 class="mb-0 name">Masimba Sibanda</h6>
+                                                                <span class="name">Designer</span>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                    <a class="list-group-item list-group-item-action" href="#">
+                                                        <div class="media media-member mb-0">
+                                                        <div class="media-body ">
+                                                            <h6 class="mb-0 name ">Krishna Bajaj</h6>
+                                                            <span class="name ">Marketing</span>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                                    <a class="list-group-item list-group-item-action " href="# ">
+                                                    <div class="media media-member mb-0 ">
+                                                            <div class="media-body">
+                                                                <h6 class="mb-0 name">Kenny Tran</h6>
+                                                                <span class="name">Contributor</span>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="files" role="tabpanel" aria-labelledby="files-tab" data-filter-list="dropzone-previews">
+                                            <div id="test-list-2">
+                                                <form class="px-3 mb-3">
+                                                    <div class="input-group input-group-round">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">
+                                                            <i class="fas fa-search"></i>
+                                                        </span>
+                                                        </div>
+                                                        <input type="text" class="form-control search" placeholder="Filter members" aria-label="Filter Members">
+                                                    </div>
+                                                </form>
+                                                <ul class="d-none dz-template list-unstyled">
+                                                    <li class="list-group-item dz-preview dz-file-preview">
+                                                        <div class="media align-items-center dz-details">
+                                                            <ul class="avatars list-unstyled">
+                                                                <li>
+                                                                    <div class="avatar bg-primary dz-file-representation">                                                                        
+                                                                        <i class="fas fa-paperclip"></i>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                </li>
+                                                            </ul>
+                                                            <div class="media-body d-flex justify-content-between align-items-center">
+                                                                <div class="dz-file-details">
+                                                                    <a href="#" class="dz-filename">
+                                                                    <span data-dz-name=""></span>
+                                                                </a>
+                                                                    <br>
+                                                                    <span class="text-small dz-size" data-dz-size=""></span>
+                                                                </div>
+                                                                <div class="dropdown">
+                                                                    <button class="btn-options" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                        <i class="fas fa-ellipsis-v"></i>
+                                                                    </button>
+                                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                                        <a class="dropdown-item" href="#">Download</a>
+                                                                        <a class="dropdown-item" href="#">Share</a>
+                                                                        <div class="dropdown-divider"></div>
+                                                                        <a class="dropdown-item text-danger" href="#" data-dz-remove="">Delete</a>
+                                                                    </div>
+                                                                </div>
+                                                                <button class="btn btn-danger btn-sm dz-remove" data-dz-remove="">
+                                                                    Cancel
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="progress dz-progress">
+                                                            <div class="progress-bar dz-upload" data-dz-uploadprogress=""></div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                                <form class="dropzone dz-clickable" action="http://mediumra.re/dropzone/upload.php">
+                                                    <span class="dz-message">Drop files here or click here to upload</span>
+                                                </form>
+                                                <ul class="list-group list-group-activity dropzone-previews flex-column-reverse list-group-flush list ">
+                                                    <li class="list-group-item" data-t="null" data-i="null" data-l="null" data-e="null">
+                                                        <div class="media align-items-center">
+                                                            <ul class="avatars list-unstyled">
+                                                                <li>
+                                                                    <div class="avatar bg-primary">
+                                                                        <i class="fas fa-file"></i>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                </li>
+                                                            </ul>
+                                                            <div class="media-body d-flex justify-content-between align-items-center">
+                                                                <div>
+                                                                    <a href="#" class="name">client-questionnaire</a>
+                                                                    <br>
+                                                                    <span class="name">48kb Text Doc</span>
+                                                                </div>
+                                                                <div class="dropdown">
+                                                                    <button class="btn-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                        <i class="fas fa-ellipsis-v"></i>
+                                                                    </button>
+                                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                                        <a class="dropdown-item" href="#">Download</a>
+                                                                        <a class="dropdown-item" href="#">Share</a>
+                                                                        <div class="dropdown-divider"></div>
+                                                                        <a class="dropdown-item text-danger" href="#">Delete</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <div class="media align-items-center">
+                                                            <ul class="avatars list-unstyled">
+                                                                <li>
+                                                                    <div class="avatar bg-primary">
+                                                                        <i class="fas fa-file"></i>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                </li>
+                                                            </ul>
+                                                            <div class="media-body d-flex justify-content-between align-items-center">
+                                                                <div>
+                                                                    <a href="#" class="name">moodboard_images</a>
+                                                                    <br>
+                                                                    <span class="name">748kb ZIP</span>
+                                                                </div>
+                                                                <div class="dropdown">
+                                                                    <button class="btn-options" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                        <i class="fas fa-ellipsis-v"></i>
+                                                                    </button>
+                                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                                        <a class="dropdown-item" href="#">Download</a>
+                                                                        <a class="dropdown-item" href="#">Share</a>
+                                                                        <div class="dropdown-divider"></div>
+                                                                        <a class="dropdown-item text-danger" href="#">Delete</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <div class="media align-items-center">
+                                                            <ul class="avatars list-unstyled">
+                                                                <li>
+                                                                    <div class="avatar bg-primary">
+                                                                        <i class="fas fa-image"></i>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                </li>
+                                                            </ul>
+                                                            <div class="media-body d-flex justify-content-between align-items-center">
+                                                                <div>
+                                                                    <a href="#" class="name">possible-hero-image</a>
+                                                                    <br>
+                                                                    <span class="name">1.2mb JPEG image</span>
+                                                                </div>
+                                                                <div class="dropdown">
+                                                                    <button class="btn-options" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                        <i class="fas fa-ellipsis-v"></i>
+                                                                    </button>
+                                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                                        <a class="dropdown-item" href="#">Download</a>
+                                                                        <a class="dropdown-item" href="#">Share</a>
+                                                                        <div class="dropdown-divider"></div>
+                                                                        <a class="dropdown-item text-danger" href="#">Delete</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <div class="media align-items-center">
+                                                            <ul class="avatars list-unstyled">
+                                                                <li>
+                                                                    <div class="avatar bg-primary">
+                                                                        <i class="fas fa-file"></i>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                </li>
+                                                            </ul>
+                                                            <div class="media-body d-flex justify-content-between align-items-center">
+                                                                <div>
+                                                                    <a href="#" class="name">LandingPrototypes</a>
+                                                                    <br>
+                                                                    <span class="name">415kb Sketch Doc</span>
+                                                                </div>
+                                                                <div class="dropdown">
+                                                                    <button class="btn-options" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                        <i class="fas fa-ellipsis-v"></i>
+                                                                    </button>
+                                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                                        <a class="dropdown-item" href="#">Download</a>
+                                                                        <a class="dropdown-item" href="#">Share</a>
+                                                                        <div class="dropdown-divider"></div>
+                                                                        <a class="dropdown-item text-danger" href="#">Delete</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <div class="media align-items-center">
+                                                            <ul class="avatars list-unstyled">
+                                                                <li>
+                                                                    <div class="avatar bg-primary">
+                                                                        <i class="fas fa-file"></i>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                </li>
+                                                            </ul>
+                                                            <div class="media-body d-flex justify-content-between align-items-center">
+                                                                <div>
+                                                                    <a href="#" class="name">Branding-Proforma</a>
+                                                                    <br>
+                                                                    <span class="name">15kb Text Document</span>
+                                                                </div>
+                                                                <div class="dropdown">
+                                                                    <button class="btn-options" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                        <i class="fas fa-ellipsis-v"></i>
+                                                                    </button>
+                                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                                        <a class="dropdown-item" href="#">Download</a>
+                                                                        <a class="dropdown-item" href="#">Share</a>
+                                                                        <div class="dropdown-divider"></div>
+                                                                        <a class="dropdown-item text-danger" href="#">Delete</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <div class="media align-items-center">
+                                                            <ul class="avatars list-unstyled">
+                                                                <li>
+                                                                    <div class="avatar bg-primary">
+                                                                        <i class="fas fa-file"></i>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                </li>
+                                                            </ul>
+                                                            <div class="media-body d-flex justify-content-between align-items-center">
+                                                                <div>
+                                                                    <a href="#" class="name">Branding-Proforma</a>
+                                                                    <br>
+                                                                    <span class="name">15kb Text Document</span>
+                                                                </div>
+                                                                <div class="dropdown">
+                                                                    <button class="btn-options" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                        <i class="fas fa-ellipsis-v"></i>
+                                                                    </button>
+                                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                                        <a class="dropdown-item" href="#">Download</a>
+                                                                        <a class="dropdown-item" href="#">Share</a>
+                                                                        <div class="dropdown-divider"></div>
+                                                                        <a class="dropdown-item text-danger" href="#">Delete</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <div class="media align-items-center">
+                                                            <ul class="avatars list-unstyled">
+                                                                <li>
+                                                                    <div class="avatar bg-primary">
+                                                                        <i class="fas fa-file"></i>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                </li>
+                                                            </ul>
+                                                            <div class="media-body d-flex justify-content-between align-items-center">
+                                                                <div>
+                                                                    <a href="#" class="name">Branding-Proforma</a>
+                                                                    <br>
+                                                                    <span class="name">15kb Text Document</span>
+                                                                </div>
+                                                                <div class="dropdown">
+                                                                    <button class="btn-options" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                        <i class="fas fa-ellipsis-v"></i>
+                                                                    </button>
+                                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                                        <a class="dropdown-item" href="#">Download</a>
+                                                                        <a class="dropdown-item" href="#">Share</a>
+                                                                        <div class="dropdown-divider"></div>
+                                                                        <a class="dropdown-item text-danger" href="#">Delete</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <div class="media align-items-center">
+                                                            <ul class="avatars list-unstyled">
+                                                                <li>
+                                                                    <div class="avatar bg-primary">
+                                                                        <i class="fas fa-file"></i>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                </li>
+                                                            </ul>
+                                                            <div class="media-body d-flex justify-content-between align-items-center">
+                                                                <div>
+                                                                    <a href="#" class="name">Branding-Proforma</a>
+                                                                    <br>
+                                                                    <span class="name">15kb Text Document</span>
+                                                                </div>
+                                                                <div class="dropdown">
+                                                                    <button class="btn-options" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                        <i class="fas fa-ellipsis-v"></i>
+                                                                    </button>
+                                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                                        <a class="dropdown-item" href="#">Download</a>
+                                                                        <a class="dropdown-item" href="#">Share</a>
+                                                                        <div class="dropdown-divider"></div>
+                                                                        <a class="dropdown-item text-danger" href="#">Delete</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <div class="media align-items-center">
+                                                            <ul class="avatars list-unstyled">
+                                                                <li>
+                                                                    <div class="avatar bg-primary">
+                                                                        <i class="fas fa-file"></i>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                </li>
+                                                            </ul>
+                                                            <div class="media-body d-flex justify-content-between align-items-center">
+                                                                <div>
+                                                                    <a href="#" class="name">Branding-Proforma</a>
+                                                                    <br>
+                                                                    <span class="name">15kb Text Document</span>
+                                                                </div>
+                                                                <div class="dropdown">
+                                                                    <button class="btn-options" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                        <i class="fas fa-ellipsis-v"></i>
+                                                                    </button>
+                                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                                        <a class="dropdown-item" href="#">Download</a>
+                                                                        <a class="dropdown-item" href="#">Share</a>
+                                                                        <div class="dropdown-divider"></div>
+                                                                        <a class="dropdown-item text-danger" href="#">Delete</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <div class="media align-items-center">
+                                                            <ul class="avatars list-unstyled">
+                                                                <li>
+                                                                    <div class="avatar bg-primary">
+                                                                        <i class="fas fa-file"></i>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                </li>
+                                                            </ul>
+                                                            <div class="media-body d-flex justify-content-between align-items-center">
+                                                                <div>
+                                                                    <a href="#" class="name">Branding-Proforma</a>
+                                                                    <br>
+                                                                    <span class="name">15kb Text Document</span>
+                                                                </div>
+                                                                <div class="dropdown">
+                                                                    <button class="btn-options" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                        <i class="fas fa-ellipsis-v"></i>
+                                                                    </button>
+                                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                                        <a class="dropdown-item" href="#">Download</a>
+                                                                        <a class="dropdown-item" href="#">Share</a>
+                                                                        <div class="dropdown-divider"></div>
+                                                                        <a class="dropdown-item text-danger" href="#">Delete</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <div class="media align-items-center">
+                                                            <ul class="avatars list-unstyled">
+                                                                <li>
+                                                                    <div class="avatar bg-primary">
+                                                                        <i class="fas fa-file"></i>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                </li>
+                                                            </ul>
+                                                            <div class="media-body d-flex justify-content-between align-items-center">
+                                                                <div>
+                                                                    <a href="#" class="name">Branding-Proforma</a>
+                                                                    <br>
+                                                                    <span class="name">15kb Text Document</span>
+                                                                </div>
+                                                                <div class="dropdown">
+                                                                    <button class="btn-options" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                        <i class="fas fa-ellipsis-v"></i>
+                                                                    </button>
+                                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                                        <a class="dropdown-item" href="#">Download</a>
+                                                                        <a class="dropdown-item" href="#">Share</a>
+                                                                        <div class="dropdown-divider"></div>
+                                                                        <a class="dropdown-item text-danger" href="#">Delete</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- end main wrapper -->
+    <!-- ============================================================== -->
+    <!-- Optional JavaScript -->
+    <script src="{{ url_for('static', filename='js/exploring.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/jquery/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/slimscroll/jquery.slimscroll.js') }}"></script>
+    
+
+    <script src="{{ url_for('static', filename='vendor/dropzone/dropzone.js') }}"></script>
+    <script src="{{ url_for('static', filename='libs/js/main-js.js') }}"></script>
+</body>
+ 
+</html>
